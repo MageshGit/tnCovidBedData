@@ -17,4 +17,4 @@ Open command prompt/power shell in the location where jar is located  </br>
 command to execute **java -jar tnBedsCovidToExcel.jar**  </br>
 if the above command throws error, try with   </br>
 **java -jar tnBedsCovidToExcel.jar com.tn.covid.data.impl.ExportData**  </br>
-You will be notified once the data is rendered in excel with a popup  </br>
+You will be notified once the data is rendered in excel with a popup  </br>  </br>
