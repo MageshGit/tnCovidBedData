@@ -12,9 +12,10 @@ Make sure your system has Java installed.   </br>
 This utility works with Java version higher/equal to 8  </br>
 
 ## **Steps**
-Download the jar file   </br>
-Open command prompt/power shell in the location where jar is located  </br>
+1. Download the jar file   </br>
+2. Open command prompt/power shell in the location where jar is located  </br>
 command to execute **java -jar tnBedsCovidToExcel.jar**  </br>
-if the above command throws error, try with   </br>
+--2.1. if the above command throws error, try with   </br>
 **java -jar tnBedsCovidToExcel.jar com.tn.covid.data.impl.ExportData**  </br>
-You will be notified once the data is rendered in excel with a popup  </br>  </br>
+3. Type or Paste the path where you wish to download the excel file and hit enter
+4. You will be notified once the data is rendered in excel via a popup  </br>  </br>
