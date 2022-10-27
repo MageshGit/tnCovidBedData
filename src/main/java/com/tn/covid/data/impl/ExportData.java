@@ -2,11 +2,13 @@ package com.tn.covid.data.impl;
 
 import static io.restassured.RestAssured.given;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Scanner;
 import java.util.TreeMap;
 
 import javax.swing.JFrame;
@@ -27,8 +29,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExportData {
 	public static void main(String[] args) throws JsonMappingException, JsonProcessingException {
-
-		getHospitalData(getDistricts());
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("Enter a file path: ");
+		System.out.flush();
+		String filePath = scanner.nextLine();
+		System.out.println("Excel file will be downloaded in the location- " + filePath);
+		getHospitalData(getDistricts(), filePath);
 	}
 
 	public static Map<String, String> getDistricts() throws JsonMappingException, JsonProcessingException {
@@ -46,11 +52,10 @@ public class ExportData {
 		return districts;
 	}
 
-	public static void getHospitalData(Map<String, String> districts)
+	public static void getHospitalData(Map<String, String> districts, String userFilePath)
 			throws JsonMappingException, JsonProcessingException {
 		String currentDate = java.time.LocalDate.now().toString();
-		final String DESKTOP_PATH = System.getProperty("user.home") + "/Desktop/";
-		final String FILE_NAME = DESKTOP_PATH + "CovidBedDataTN_" + currentDate + ".xlsx";
+		final String FILE_NAME = userFilePath + File.separatorChar + "CovidBedDataTN_" + currentDate + ".xlsx";
 
 		// write to excel
 		XSSFWorkbook workbook = new XSSFWorkbook();
@@ -186,7 +191,8 @@ public class ExportData {
 
 			JFrame frame = new JFrame();
 			// show message to user on completion
-			JOptionPane.showMessageDialog(frame, "Covid TN Beds Data downloaded succesfully in the path-\n" + FILE_NAME);
+			JOptionPane.showMessageDialog(frame,
+					"Covid TN Beds Data downloaded succesfully in the path-\n" + FILE_NAME);
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
